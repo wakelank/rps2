@@ -8,28 +8,34 @@
   <script src="src/rps.js"></script>
 </head>
 <body>
-
-<h1>R>P>S</h1>
-
-<div id='playerA'>
-  <div id='scoreA'>playerA
+<div class="container">
+  <h1>R>P>S</h1>
+  <div class="player-boxes cf">
+    <div id='playerA' class='player-box'>
+      Player A: <span id='scoreA'></span> wins
+      <div class="move-btns">
+        <button class="buttonA" id="rock">Rock</button>
+        <button class="buttonA" id="paper">Paper</button>
+        <button class="buttonA" id="scissors">Scissors</button>
+      </div>
+    </div>
+  
+    <div id='playerB' class='player-box'>
+      Player B: <span id='scoreB'></span> wins
+      <div class="move-btns">
+        <button class="buttonB" id="rock">Rock</button>
+        <button class="buttonB" id="paper">Paper</button>
+        <button class="buttonB" id="scissors">Scissors</button>
+      </div>
+    </div>
   </div>
-  <button class="buttonA" id="rock">Rock</button>
-  <button class="buttonA" id="paper">Paper</button>
-  <button class="buttonA" id="scissors">Scissors</button>
-</div>
-
-<div id='playerB'>
-  <div id='scoreB'>playerB
+  <div class="game-controls">
+    <button class='shoot'>shoot!</button>
+    <button class='newGameBtn'>Start a new game</button>
   </div>
-  <button class="buttonB" id="rock">Rock</button>
-  <button class="buttonB" id="paper">Paper</button>
-  <button class="buttonB" id="scissors">Scissors</button>
-</div>
-<button class='shoot'>shoot!</button>
-<button class='newGameBtn'>Start a new game</button>
 
-<div id='results'>
+  <div id='results'>
+  </div>
 </div>
 
 </body>

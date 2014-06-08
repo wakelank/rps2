@@ -22,16 +22,13 @@
 // return victory[moveA] = moveB
 
 function doesBeat(moveA, moveB){
-victory = {rock: 'scissors', paper: 'rock', scissors: 'paper'};
-return victory[moveA] == moveB
-
+  var victory = {rock: 'scissors', paper: 'rock', scissors: 'paper'};
+  return victory[moveA] == moveB
 }
 
 function doesTie(moveA, moveB){
  return moveA == moveB;
 }
-
-
 
 function Player(name){
   this.name         = name
@@ -48,17 +45,16 @@ else
 
 Player.prototype.winBattle = function(){
   this.victoryCount += 1;
+  $('#results').html(this.name + " wins the battle!");
 }
 
 Player.prototype.winWar = function(){
   return this.victoryCount == 3;
-
-  }
+}
 
 Player.prototype.tieLose = function(){
     this.victoryCount = 0;
 }
-
 
 function Game(){
   this.playerA  = undefined;
@@ -68,15 +64,10 @@ function Game(){
 
 Game.prototype.startGame = function(){
   this.gameOver = false;
-  this.playerA  = new Player("playerA");
-  this.playerB  = new Player("playerB");
+  this.playerA  = new Player("Player A");
+  this.playerB  = new Player("Player B");
   $('#results').html('');
-  this.showScore();
-
-
-
-  
-
+  this.showScore();  
 }
 
 Game.prototype.showScore = function(){
@@ -89,7 +80,13 @@ Game.prototype.endGame = function(){
   this.gameOver = true;
   this.playerA.move = undefined;
   this.playerB.move = undefined;
-
+  if(this.playerA.winWar){
+    $('#results').html(this.playerA.name + " wins the war!");
+  }
+  else
+  {
+    $('#results').html(this.playerB.name + " wins the war!");
+  }
 }
 
 Game.prototype.shoot = function(){
@@ -102,6 +99,8 @@ Game.prototype.shoot = function(){
     if (doesTie(moveA, moveB)){
       playerA.tieLose();
       playerB.tieLose();
+      $('#results').html("It's a tie");
+
     }
     else {
       if (doesBeat(moveA, moveB)){

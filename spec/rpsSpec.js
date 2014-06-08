@@ -48,9 +48,9 @@ describe("Rock, Paper, Scisssors", function (){
   it("a player gains a victory", function(){
     var playerA = new Player(playerA);
     playerA.winBattle();
-    actual   = playerA.victoryCount
+    actual   = playerA.victoryCount;
     expected = 1;
-    expect(actual).toBe(expected)
+    expect(actual).toBe(expected);
   });
 
   it("a player must have 3 wins for victory", function(){
