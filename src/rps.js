@@ -39,7 +39,11 @@ function Player(name){
 }
 
 Player.prototype.pickMove = function(move){
+  if (game.gameOver == false){
   this.move = move;
+}
+else
+  $('#results').html("You must start a new game before your can pick a move.");
 }
 
 Player.prototype.winBattle = function(){
@@ -62,18 +66,30 @@ function Game(){
   this.gameOver = true;
 }
 
-Game.prototype.startGame = function(playerA, playerB){
+Game.prototype.startGame = function(){
   this.gameOver = false;
   this.playerA  = new Player("playerA");
   this.playerB  = new Player("playerB");
+  $('#results').html('');
+
+
+
   
 
 }
 
 Game.prototype.showScore = function(){
-  $('.scoreA').html(this.playerA.victoryCount);
-  $('.scoreB').html(this.playerB.victoryCount);
+  $('#scoreA').html(this.playerA.victoryCount);
+  $('#scoreB').html(this.playerB.victoryCount);
 
+}
+Game.prototype.endGame = function(){
+  $that = this;
+  this.gameOver = true;
+  this.playerA.move = undefined;
+  this.playerB.move = undefined;
+  var newGameBtn = $('button').html("New Game").click(function(){ $that.startGame });
+  $('#reults').append(newGameBtn);
 }
 
 Game.prototype.shoot = function(){
@@ -98,9 +114,10 @@ Game.prototype.shoot = function(){
       }
     }
   }
-  if (playerA.winWar || playerB.winWar){
+  if (playerA.winWar() || playerB.winWar()){
     this.gameOver = true;
   }
+  
   this.showScore();
 
 
