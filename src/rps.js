@@ -71,6 +71,7 @@ Game.prototype.startGame = function(){
   this.playerA  = new Player("playerA");
   this.playerB  = new Player("playerB");
   $('#results').html('');
+  this.showScore();
 
 
 
@@ -88,8 +89,7 @@ Game.prototype.endGame = function(){
   this.gameOver = true;
   this.playerA.move = undefined;
   this.playerB.move = undefined;
-  var newGameBtn = $('button').html("New Game").click(function(){ $that.startGame });
-  $('#reults').append(newGameBtn);
+
 }
 
 Game.prototype.shoot = function(){
@@ -115,7 +115,7 @@ Game.prototype.shoot = function(){
     }
   }
   if (playerA.winWar() || playerB.winWar()){
-    this.gameOver = true;
+    game.endGame();
   }
   
   this.showScore();
@@ -152,6 +152,9 @@ $(function(){
   });
   $('.shoot').click(function(){
     game.shoot();
+  });
+  $('.newGameBtn').click(function(){
+    game.startGame();
   });
 
 
